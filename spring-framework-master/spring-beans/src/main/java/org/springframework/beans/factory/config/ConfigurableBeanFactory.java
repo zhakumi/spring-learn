@@ -74,6 +74,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * @throws IllegalStateException if this factory is already associated with
 	 * a parent BeanFactory
 	 * @see #getParentBeanFactory()
+	 * 可以设置父工厂，但是值得注意的是，只能设置一次，不能改变
 	 */
 	void setParentBeanFactory(BeanFactory parentBeanFactory) throws IllegalStateException;
 
@@ -86,6 +87,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * to be resolved once the factory processes the bean definition.
 	 * @param beanClassLoader the class loader to use,
 	 * or {@code null} to suggest the default class loader
+	 *                        配置ClassLoader，只是应用于Bean definition
 	 */
 	void setBeanClassLoader(@Nullable ClassLoader beanClassLoader);
 
@@ -93,6 +95,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * Return this factory's class loader for loading bean classes
 	 * (only {@code null} if even the system ClassLoader isn't accessible).
 	 * @see org.springframework.util.ClassUtils#forName(String, ClassLoader)
+	 *
 	 */
 	@Nullable
 	ClassLoader getBeanClassLoader();
@@ -122,6 +125,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * <p>Turn this flag off to enable hot-refreshing of bean definition objects
 	 * and in particular bean classes. If this flag is off, any creation of a bean
 	 * instance will re-query the bean class loader for newly resolved classes.
+	 * 设置、是否缓存元数据，如果false，那么每次请求实例，都会从类加载器重新加载（热加载）,这里还不太懂
 	 */
 	void setCacheBeanMetadata(boolean cacheBeanMetadata);
 
@@ -137,12 +141,14 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * An ApplicationContext will typically set a standard expression strategy
 	 * here, supporting "#{...}" expressions in a Unified EL compatible style.
 	 * @since 3.0
+	 * 表达式支持，配置表达式支持器
 	 */
 	void setBeanExpressionResolver(@Nullable BeanExpressionResolver resolver);
 
 	/**
 	 * Return the resolution strategy for expressions in bean definition values.
 	 * @since 3.0
+	 * /配置conversionService？？转换服务？
 	 */
 	@Nullable
 	BeanExpressionResolver getBeanExpressionResolver();
@@ -198,6 +204,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * @since 2.5
 	 * @see #addPropertyEditorRegistrar
 	 * @see #registerCustomEditor
+	 * 配置类型转换器？TypeCoverter
 	 */
 	void setTypeConverter(TypeConverter typeConverter);
 
@@ -242,6 +249,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * that autodetected post-processors (e.g. as beans in an ApplicationContext)
 	 * will always be applied after programmatically registered ones.
 	 * @param beanPostProcessor the post-processor to register
+	 *   添加后处理器
 	 */
 	void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 
@@ -317,6 +325,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 	 * @param beanName the canonical name of the target bean
 	 * @param alias the alias to be registered for the bean
 	 * @throws BeanDefinitionStoreException if the alias is already in use
+	 * //注册别名依赖关系
 	 */
 	void registerAlias(String beanName, String alias) throws BeanDefinitionStoreException;
 

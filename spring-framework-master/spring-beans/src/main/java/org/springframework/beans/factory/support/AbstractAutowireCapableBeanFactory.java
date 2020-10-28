@@ -106,6 +106,7 @@ import org.springframework.util.StringUtils;
  * of the {@link org.springframework.beans.factory.ListableBeanFactory} and
  * {@link BeanDefinitionRegistry} interfaces, which represent the API and SPI
  * view of such a factory, respectively.
+ * spring启动时候会new一个DefaultListableBeanFactory类型的bean工厂，就是IOC容器
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -526,7 +527,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			throw new BeanCreationException(mbdToUse.getResourceDescription(), beanName,
 					"BeanPostProcessor before instantiation of bean failed", ex);
 		}
-
+        // 真正创建bean
 		try {
 			Object beanInstance = doCreateBean(beanName, mbdToUse, args);
 			if (logger.isTraceEnabled()) {
@@ -561,13 +562,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args)
 			throws BeanCreationException {
-
+		// 这个BeanWrapper是用来持有创建出来的bean对象的
 		// Instantiate the bean.
 		BeanWrapper instanceWrapper = null;
 		if (mbd.isSingleton()) {
 			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
 		}
 		if (instanceWrapper == null) {
+			// createBeanInstance是真正创建bean的地方.
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		Object bean = instanceWrapper.getWrappedInstance();
@@ -605,6 +607,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Initialize the bean instance.
 		Object exposedObject = bean;
 		try {
+			// 装配Bean对象
 			populateBean(beanName, mbd, instanceWrapper);
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
@@ -1160,6 +1163,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @see #instantiateUsingFactoryMethod
 	 * @see #autowireConstructor
 	 * @see #instantiateBean
+	 * 对应实例化的三种方式，通过工厂方法实例化，通过构造器，简单实例化。
 	 */
 	protected BeanWrapper createBeanInstance(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) {
 		// Make sure bean class is actually resolved at this point.
@@ -1174,7 +1178,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (instanceSupplier != null) {
 			return obtainFromSupplier(instanceSupplier, beanName);
 		}
-
+		 //实例化方式的选择可以通过mbd的参数来决定。这里是使用工厂方法的方式实例化。
 		if (mbd.getFactoryMethodName() != null) {
 			return instantiateUsingFactoryMethod(beanName, mbd, args);
 		}
@@ -1199,6 +1203,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 		}
 
+		//选择合适参数的构造器进行实例化，这里由于存在参数所以选择带有参数的构造器实例化
 		// Candidate constructors for autowiring?
 		Constructor<?>[] ctors = determineConstructorsFromBeanPostProcessors(beanClass, beanName);
 		if (ctors != null || mbd.getResolvedAutowireMode() == AUTOWIRE_CONSTRUCTOR ||
@@ -1211,7 +1216,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (ctors != null) {
 			return autowireConstructor(beanName, mbd, ctors, null);
 		}
-
+        // 默认无参构造器，一般采用CGLIB字节码生成器类库进行实例或者JVM的反射功能。
 		// No special handling: simply use no-arg constructor.
 		return instantiateBean(beanName, mbd);
 	}

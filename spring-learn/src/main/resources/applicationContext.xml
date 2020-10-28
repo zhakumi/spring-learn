@@ -4,6 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
     <!--注意上面的default-autowire="byType"  根据type进行自动注入-->
-    <bean id="ab" abstract="true" ></bean>
-    <bean id="xxx" class="com.wangcan.spring.learn.InterService" parent="ab" scope="prototype"></bean>
+<!--    <bean id="ab" abstract="true" ></bean>-->
+<!--    <bean id="xxx" class="com.wangcan.spring.learn.InterService" parent="ab" scope="prototype"></bean>-->
+        <bean id="performer" class="com.wangcan.spring.learn.PerformerImpl"></bean>
 </beans>

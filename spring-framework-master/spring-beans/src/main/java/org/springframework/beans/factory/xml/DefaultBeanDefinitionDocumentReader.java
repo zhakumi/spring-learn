@@ -115,6 +115,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 
 
 	/**
+	 * 可以看出是从<beans>作为root节点进行解析
 	 * Register each bean definition within the given root {@code <beans/>} element.
 	 */
 	@SuppressWarnings("deprecation")  // for Environment.acceptsProfiles(String...)

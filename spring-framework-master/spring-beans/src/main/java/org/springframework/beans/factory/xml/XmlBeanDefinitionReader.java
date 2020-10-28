@@ -322,19 +322,21 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		if (logger.isTraceEnabled()) {
 			logger.trace("Loading XML bean definitions from " + encodedResource);
 		}
-
+        //resourcesCurrentlyBeingLoaded是ThreadLocal类型的，里面保存的是Set类型。为了保证线程安全。
 		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();
-
+         //将encodeResource，资源放入存放资源的Set中
 		if (!currentResources.add(encodedResource)) {
 			throw new BeanDefinitionStoreException(
 					"Detected cyclic loading of " + encodedResource + " - check your import definitions!");
 		}
 
 		try (InputStream inputStream = encodedResource.getResource().getInputStream()) {
+			//转换为输入流
 			InputSource inputSource = new InputSource(inputStream);
 			if (encodedResource.getEncoding() != null) {
 				inputSource.setEncoding(encodedResource.getEncoding());
 			}
+			//最终调用doLoadBeanDefinitions方法。
 			return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
 		}
 		catch (IOException ex) {

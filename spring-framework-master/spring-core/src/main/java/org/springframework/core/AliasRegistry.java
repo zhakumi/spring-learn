@@ -19,7 +19,7 @@ package org.springframework.core;
 /**
  * Common interface for managing aliases. Serves as a super-interface for
  * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}.
- *
+ *  用于管理别名的公共接口,定义对别名的简单增删等操作。用作超级接口
  * @author Juergen Hoeller
  * @since 2.5.2
  */
@@ -31,6 +31,7 @@ public interface AliasRegistry {
 	 * @param alias the alias to be registered
 	 * @throws IllegalStateException if the alias is already in use
 	 * and may not be overridden
+	 * 在注册表中给name 注册一个别名alias
 	 */
 	void registerAlias(String name, String alias);
 
@@ -38,6 +39,7 @@ public interface AliasRegistry {
 	 * Remove the specified alias from this registry.
 	 * @param alias the alias to remove
 	 * @throws IllegalStateException if no such alias was found
+	 * 移除注册表中的别名alias
 	 */
 	void removeAlias(String alias);
 
@@ -46,6 +48,7 @@ public interface AliasRegistry {
 	 * (as opposed to the name of an actually registered component).
 	 * @param name the name to check
 	 * @return whether the given name is an alias
+	 * 校验是否存在别名
 	 */
 	boolean isAlias(String name);
 
@@ -53,6 +56,7 @@ public interface AliasRegistry {
 	 * Return the aliases for the given name, if defined.
 	 * @param name the name to check for aliases
 	 * @return the aliases, or an empty array if none
+	 * 在注册表中获取name的所有别名
 	 */
 	String[] getAliases(String name);
 
