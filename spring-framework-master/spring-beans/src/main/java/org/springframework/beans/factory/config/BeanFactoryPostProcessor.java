@@ -69,6 +69,9 @@ public interface BeanFactoryPostProcessor {
 	 * properties even to eager-initializing beans.
 	 * @param beanFactory the bean factory used by the application context
 	 * @throws org.springframework.beans.BeansException in case of errors
+	 * spring启动过程中会自动回调BeanFactoryPostProcessor 的实现类的postProcessBeanFactory方法，
+	 * 这个方法有一个ConfigurableListableBeanFactory 的类型参数beanFactory，
+	 * 也就是说我们可以在这个postProcessBeanFactory方法里操作bean工厂
 	 */
 	void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
 

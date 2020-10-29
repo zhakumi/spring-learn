@@ -203,9 +203,17 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 */
 	@SuppressWarnings("unchecked")
 	protected void registerDefaultFilters() {
+		/*
+		 *注册了@Component 过滤器到 includeFiters ,相当于 同时注册了所有被@Component注释的注解，
+		 *包括@Service ，@Repository,@Controller，同时也支持java EE6 的javax.annotation.ManagedBean
+		 *和JSR-330的@Named 注解。
+		 *这就是为什么@Service @Controller @Repostory @Component 能够起作用的原因。
+		 */
 		this.includeFilters.add(new AnnotationTypeFilter(Component.class));
+		// 类加载器
 		ClassLoader cl = ClassPathScanningCandidateComponentProvider.class.getClassLoader();
 		try {
+			// 添加ManagedBean 注解过滤器
 			this.includeFilters.add(new AnnotationTypeFilter(
 					((Class<? extends Annotation>) ClassUtils.forName("javax.annotation.ManagedBean", cl)), false));
 			logger.trace("JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning");
@@ -214,6 +222,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 			// JSR-250 1.1 API (as included in Java EE 6) not available - simply skip.
 		}
 		try {
+			// 添加Named 注解过滤器
 			this.includeFilters.add(new AnnotationTypeFilter(
 					((Class<? extends Annotation>) ClassUtils.forName("javax.inject.Named", cl)), false));
 			logger.trace("JSR-330 'javax.inject.Named' annotation found and supported for component scanning");
@@ -312,6 +321,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 			return addCandidateComponentsFromIndex(this.componentsIndex, basePackage);
 		}
 		else {
+			//完成真正的扫描
 			return scanCandidateComponents(basePackage);
 		}
 	}
@@ -412,28 +422,55 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		return candidates;
 	}
 
+	/**
+	 * 扫描包 生成BeanDefinition集合
+	 * @param basePackage
+	 * @return
+	 */
 	private Set<BeanDefinition> scanCandidateComponents(String basePackage) {
 		Set<BeanDefinition> candidates = new LinkedHashSet<>();
 		try {
+			// //根据包名组装包扫描路径
+			// 如，classpath*:com/**/*.class
 			String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX +
 					resolveBasePackage(basePackage) + '/' + this.resourcePattern;
+			/*
+             resourcePatternResolver（资源加载器）根据匹配规则获取Resource[]
+             Resource数组中每一个对象都是对应一个Class文件，Spring用Resource定位资源，封装了资源的IO操作。
+             这里的Resource实际类型是FileSystemResource。资源加载器其实就是容器本身
+            */
 			Resource[] resources = getResourcePatternResolver().getResources(packageSearchPath);
 			boolean traceEnabled = logger.isTraceEnabled();
 			boolean debugEnabled = logger.isDebugEnabled();
+			//循环处理每一个resource,相当于循环处理每一个class文件
 			for (Resource resource : resources) {
 				if (traceEnabled) {
 					logger.trace("Scanning " + resource);
 				}
 				if (resource.isReadable()) {
 					try {
+						/*
+						 *读取类的注解信息和类信息，信息储存到MetadataReader
+						 *meteDataFactory根据Resouce获取到MetadataReader对象
+						 *MetadataReader提供了获取一个Class文件的ClassMetadata和AnnotationMetadata的操作。
+						 */
 						MetadataReader metadataReader = getMetadataReaderFactory().getMetadataReader(resource);
+						/*
+						 *判断元数据是否需要组装成BeanDefinition
+						 *此处判断当前class是否需要注册到spring的IOC容器中，通过IOC容器管理。
+						 *spring默认对Component注解的类进行动态注册到IOC容器
+						 *通过includeFilters与excludeFilters来判定匹配。
+						 */
 						if (isCandidateComponent(metadataReader)) {
+							// 把符合条件的类转换成 beandefinition
 							ScannedGenericBeanDefinition sbd = new ScannedGenericBeanDefinition(metadataReader);
 							sbd.setSource(resource);
+							// 再次判断 如果是实体类 返回true,如果是抽象类，但是抽象方法 被 @Lookup 注解注释返回true
 							if (isCandidateComponent(sbd)) {
 								if (debugEnabled) {
 									logger.debug("Identified candidate component class: " + resource);
 								}
+								//返回BeanDefinition 注册到 BeanFactory
 								candidates.add(sbd);
 							}
 							else {

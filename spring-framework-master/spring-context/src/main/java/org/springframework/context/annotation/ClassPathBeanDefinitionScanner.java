@@ -59,6 +59,9 @@ import org.springframework.util.PatternMatchUtils;
  * @see org.springframework.stereotype.Repository
  * @see org.springframework.stereotype.Service
  * @see org.springframework.stereotype.Controller
+ * 扫描 @Componet @Repository @Service @Controller spring包扫描
+ * 扫描类路径下的候选Component，构造BeanDefinition对象（实际为ScannedGenericBeanDefinition）
+ * 利用BeanDefinitionRegister注册BeanDefinition到bean工厂中，BeanDefinitionRegister是spring默认bean工厂DefaultListableBeanFactory的一个接口，用于注册BeanDefinition；
  */
 public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateComponentProvider {
 
@@ -80,6 +83,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * Create a new {@code ClassPathBeanDefinitionScanner} for the given bean factory.
 	 * @param registry the {@code BeanFactory} to load bean definitions into, in the form
 	 * of a {@code BeanDefinitionRegistry}
+	 * //spring将bean工厂传递进去
 	 */
 	public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry) {
 		this(registry, true);
@@ -108,6 +112,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * {@link org.springframework.stereotype.Controller @Controller} stereotype annotations
 	 * @see #setResourceLoader
 	 * @see #setEnvironment
+	 * useDefaultFilters表示是否启动过滤器，用户提供过自定义滤器让spring忽略或者添加自己定义的业务类
 	 */
 	public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry, boolean useDefaultFilters) {
 		this(registry, useDefaultFilters, getOrCreateEnvironment(registry));
@@ -160,9 +165,16 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 			Environment environment, @Nullable ResourceLoader resourceLoader) {
 
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
+		//bean工厂，IOC容易，注册BeanDefinition
 		this.registry = registry;
 
 		if (useDefaultFilters) {
+			/**
+			 * 注册spring扫描类过滤器
+			 * 加了特定注解的类会被扫描到
+			 * 带有@Component、@Repository、@Service、@Controller、@ManagedBean、@Named
+			 * 如果能通过过滤器，那么这个class 就会被转换成BeanDefinition 注册到容器。如果在实例化ClassPathBeanDefinitionScanner时，没有说明要使用用户自定义的过滤器的话，那么就会采用默认的过滤器规则
+			 */
 			registerDefaultFilters();
 		}
 		setEnvironment(environment);
@@ -247,17 +259,19 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * Perform a scan within the specified base packages.
 	 * @param basePackages the packages to check for annotated classes
 	 * @return number of beans registered
+	 * 扫描给定的包路径，生成BeanDefinition并注册到注册器
 	 */
 	public int scan(String... basePackages) {
+		////获取注册器中已注册的bean数量
 		int beanCountAtScanStart = this.registry.getBeanDefinitionCount();
-
+		//通过doScan给定包路径并生成BeanDefinition注册到registry中
 		doScan(basePackages);
 
 		// Register annotation config processors, if necessary.
 		if (this.includeAnnotationConfig) {
 			AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 		}
-
+		//返回本次扫描并注册到IOC容器中的类
 		return (this.registry.getBeanDefinitionCount() - beanCountAtScanStart);
 	}
 
@@ -269,19 +283,41 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @param basePackages the packages to check for annotated classes
 	 * @return set of beans registered if any for tooling registration purposes (never {@code null})
 	 */
+	/**
+	 * 扫描给定的包路径，生成BeanDefinition并注册到注册器
+	 */
 	protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
 		Assert.notEmpty(basePackages, "At least one base package must be specified");
 		Set<BeanDefinitionHolder> beanDefinitions = new LinkedHashSet<>();
+		/**
+		 * 扫描basePackage路径下的java文件
+		 * 先全部转为Resource,然后再判断拿出符合条件的bd
+		 */
 		for (String basePackage : basePackages) {
+			// 调用findCandidateComponents扫描包组装BeanDefinition集合
+			//findCandidateComponents方法为父类方法
 			Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
+			//遍历BeanDefinition，根据条件将BeanDefinition注册到注册中心
 			for (BeanDefinition candidate : candidates) {
+				//解析scope属性
 				ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(candidate);
 				candidate.setScope(scopeMetadata.getScopeName());
+				//获取beanName,先判断注解上有没有显示设置beanName
+				//没有的话，就以类名小写为beanName
 				String beanName = this.beanNameGenerator.generateBeanName(candidate, this.registry);
 				if (candidate instanceof AbstractBeanDefinition) {
+					/**
+					 * 如果这个类是AbstractBeanDefinition类型
+					 * 则为他设置默认值，比如lazy/init/destroy
+					 * 通过扫描出来的bd是ScannedGenericBeanDefinition，实现了AbstractBeanDefinition
+					 */
 					postProcessBeanDefinition((AbstractBeanDefinition) candidate, beanName);
 				}
 				if (candidate instanceof AnnotatedBeanDefinition) {
+					/**
+					 * 处理加了注解的类
+					 * 把常用注解设置到AnnotationBeanDefinition中
+					 */
 					AnnotationConfigUtils.processCommonDefinitionAnnotations((AnnotatedBeanDefinition) candidate);
 				}
 				if (checkCandidate(beanName, candidate)) {

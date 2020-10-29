@@ -159,6 +159,16 @@ public abstract class BeanDefinitionReaderUtils {
 			BeanDefinitionHolder definitionHolder, BeanDefinitionRegistry registry)
 			throws BeanDefinitionStoreException {
 
+		/**
+		 * 这里的registerBeanDefinition是由父类GenericApplicationContext实现的
+		 *
+		 * 跟踪源码可知，是在父类中调用this.beanFactory.registerBeanDefinition(beanName, beanDefinition)
+		 * 而这个beanFactory是AnnotationConfigApplicationContext在执行自己的构造方法this()时
+		 * 先去执行了父类GenericApplicationContext的构造方法，完成了this.beanFactory = new DefaultListableBeanFactory()
+		 *
+		 * 所以，最终将beanDefinition注册到了DefaultListableBeanFactory中
+		 *
+		 * */
 		// Register bean definition under primary name.
 		String beanName = definitionHolder.getBeanName();
 		registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());
