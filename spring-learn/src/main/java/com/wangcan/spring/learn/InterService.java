@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Description;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 @Description("业务类")
 @Scope("singleton")
 public class InterService {

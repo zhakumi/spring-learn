@@ -78,6 +78,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	public AnnotationConfigApplicationContext(DefaultListableBeanFactory beanFactory) {
 		super(beanFactory);
 		//在IOC容器中初始化一个 注解bean读取器AnnotatedBeanDefinitionReader
+		// 这里主要是用来读取解析Appconfig 成 beanDefintion并Put到beanDefintionMap
 		this.reader = new AnnotatedBeanDefinitionReader(this);
 		//在IOC容器中初始化一个 按类路径扫描注解bean的 扫描器
 		this.scanner = new ClassPathBeanDefinitionScanner(this);

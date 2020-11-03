@@ -2,6 +2,9 @@ package com.wangcan.spring.learn;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ScannedGenericBeanDefinition;
+import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.core.type.MethodMetadata;
 
 public class SpringTest {
     public static void main(String[] args) throws InterruptedException {
@@ -25,6 +28,13 @@ public class SpringTest {
         System.out.println("是否是抽象类"+interServiceBeanDefinition.isAbstract());
         System.out.println("——————等等等等，读者自行编写");
         System.out.println("获取interService.class的源："+interServiceBeanDefinition.getSource());
+
+
+        ScannedGenericBeanDefinition  scannedGenericBeanDefinition = (ScannedGenericBeanDefinition )context.getBeanDefinition("interService");
+        //获取注解信息
+        AnnotationMetadata annotationMetadata  =scannedGenericBeanDefinition.getMetadata();
+        //获取工厂方法元数据
+        MethodMetadata methodMetadata =scannedGenericBeanDefinition.getFactoryMethodMetadata();
 
         //在更改业务类后 此时会报错 已经没有InterService的实例了
         context.getBean(InterService.class);

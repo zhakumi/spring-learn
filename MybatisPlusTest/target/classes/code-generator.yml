@@ -1,0 +1,21 @@
+code:
+  outputDir: D:/code/src
+  tableName: user
+  author: auto
+  parent: com.wang.test
+  url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8
+  userName: root
+  passWord: 123456
+#OutputDir=D:/XXX/src
+##数据库表名(此处切不可为空，如果为空，则默认读取数据库的所有表名)
+#tableName=user
+##生成代码类名类名
+#className=XXX
+##设置作者
+#author=XXX
+#
+##自定义包路径
+#parent=com.wang.test
+#url=jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8
+#userName=root
+#passWord=123456
