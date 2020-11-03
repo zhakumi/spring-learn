@@ -204,7 +204,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	@SuppressWarnings("unchecked")
 	protected void registerDefaultFilters() {
 		/*
-		 *注册了@Component 过滤器到 includeFiters ,相当于 同时注册了所有被@Component注释的注解，
+		 *注册了@Component 过滤器到 includeFiters ,相当于 同时注册了所有被@Component注释的注解， @Repository、@Service、@Controller
 		 *包括@Service ，@Repository,@Controller，同时也支持java EE6 的javax.annotation.ManagedBean
 		 *和JSR-330的@Named 注解。
 		 *这就是为什么@Service @Controller @Repostory @Component 能够起作用的原因。

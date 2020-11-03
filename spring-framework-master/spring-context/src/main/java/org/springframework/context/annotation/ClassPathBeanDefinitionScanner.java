@@ -139,7 +139,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @since 3.1
 	 * @see #setResourceLoader
 	 */
-	public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry, boolean useDefaultFilters,
+	public  ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry, boolean useDefaultFilters,
 			Environment environment) {
 
 		this(registry, useDefaultFilters, environment,
@@ -165,7 +165,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 			Environment environment, @Nullable ResourceLoader resourceLoader) {
 
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
-		//bean工厂，IOC容易，注册BeanDefinition
+		//bean工厂，IOC容器，注册BeanDefinition
 		this.registry = registry;
 
 		if (useDefaultFilters) {
@@ -173,7 +173,8 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 			 * 注册spring扫描类过滤器
 			 * 加了特定注解的类会被扫描到
 			 * 带有@Component、@Repository、@Service、@Controller、@ManagedBean、@Named
-			 * 如果能通过过滤器，那么这个class 就会被转换成BeanDefinition 注册到容器。如果在实例化ClassPathBeanDefinitionScanner时，没有说明要使用用户自定义的过滤器的话，那么就会采用默认的过滤器规则
+			 * 如果能通过过滤器，那么这个class 就会被转换成BeanDefinition 注册到容器。
+			 * 如果在实例化ClassPathBeanDefinitionScanner时，没有说明要使用用户自定义的过滤器的话，那么就会采用默认的过滤器规则
 			 */
 			registerDefaultFilters();
 		}
