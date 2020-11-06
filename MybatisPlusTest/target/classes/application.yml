@@ -1,9 +1,12 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/test
-    username: root
-    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.26.59.35:3306/WK_OMS_WORKORDER
+    username: mysqluser
+    password: mysqluser
 mybatis-plus:
   # 支持统配符 * 或者 ; 分割
   typeEnumsPackage: com.wang.test.enums
+logging:
+  level:
+    com.wang.test.mapper: debug
