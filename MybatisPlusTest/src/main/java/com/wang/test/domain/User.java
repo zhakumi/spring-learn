@@ -18,7 +18,7 @@ import lombok.Data;
 @Data
 @TableName("OMS_USER")
 public class User {
-    @TableId(value = "ID_STR", type = IdType.AUTO)
+    @TableId(value = "ID", type = IdType.ASSIGN_ID)
     private Long id;
     private String name;
     private String password;

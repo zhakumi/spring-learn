@@ -1,6 +1,9 @@
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wang.test.Application;
+import com.wang.test.domain.User;
 import com.wang.test.enums.EnumA;
 import com.wang.test.mapper.UserMapper;
 import com.wang.test.service.IOmsUserService;
@@ -10,8 +13,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -62,14 +68,13 @@ public class CRUDTest {
         int count = iOmsUserService.count();
         System.out.println(count);
         // Save
-//        User user=new User();
-//        user.setId(12L);
-//        user.setName("ts");
-//        user.setPassword("sss");
-//        user.setStatus(EnumA.ENABLE);
-//        user.setCreateTime(LocalDateTime.now());
-//        // 插入一条记录（选择字段，策略插入）
-//        iOmsUserService.save(user);
+        User user=new User();
+        user.setName("tss");
+        user.setPassword("sss");
+        user.setStatus(EnumA.ENABLE);
+        user.setCreateTime(LocalDateTime.now());
+        // 插入一条记录（选择字段，策略插入）
+        iOmsUserService.save(user);
         // 插入（批量）
 //        List<User> users = new ArrayList<>(2);
 //        User user1 = new User();
