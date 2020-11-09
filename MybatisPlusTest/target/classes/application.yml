@@ -7,6 +7,7 @@ spring:
 mybatis-plus:
   # 支持统配符 * 或者 ; 分割
   typeEnumsPackage: com.wang.test.enums
+  mapper-locations: classpath:/mapper/**.xml
 logging:
   level:
     com.wang.test.mapper: debug

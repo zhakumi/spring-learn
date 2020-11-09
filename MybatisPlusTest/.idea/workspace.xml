@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="88b636db-b656-422f-b951-b3bc2a629cc4" name="Default Changelist" comment="" />
+    <list default="true" id="88b636db-b656-422f-b951-b3bc2a629cc4" name="Default Changelist" comment="1">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/domain/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/MyMetaObjectHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/handler/MyInitObjectHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/enums/EnumA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/enums/EnumA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CRUDTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CRUDTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wang/test/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wang/test/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wang/test/MyMetaObjectHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wang/test/enums/EnumA.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wang/test/enums/EnumA.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,8 +47,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Kotlin File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -22,16 +58,27 @@
       <find>TemplateConfig</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1Zn8gU5gEwV1pABDIPaRXbzoghR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545299887665" />
+    <property name="com.obroom.plugin.mybatislog.indexNum" value="55" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../wlyuan" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -40,38 +87,55 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager" selected="Application.CodeG">
-    <configuration name="CodeG" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.wang.test.CodeG" />
-      <module name="MybatisPlusTest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.wang.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CodeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.wang.test.CodeGenerator" />
-      <module name="MybatisPlusTest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.wang.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CRUDTest.testSelect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RunManager" selected="JUnit.CRUDTest.autoInitData">
+    <configuration name="CRUDTest.autoInitData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MybatisPlusTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CRUDTest" />
-      <option name="METHOD_NAME" value="testSelect" />
+      <option name="METHOD_NAME" value="autoInitData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CRUDTest.customerSelect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MybatisPlusTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CRUDTest" />
+      <option name="METHOD_NAME" value="customerSelect" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CRUDTest.testList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MybatisPlusTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CRUDTest" />
+      <option name="METHOD_NAME" value="testList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CRUDTest.testSave" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MybatisPlusTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CRUDTest" />
+      <option name="METHOD_NAME" value="testSave" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CRUDTest.testUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MybatisPlusTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CRUDTest" />
+      <option name="METHOD_NAME" value="testUpdate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -79,9 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CodeG" />
-        <item itemvalue="Application.CodeGenerator" />
-        <item itemvalue="JUnit.CRUDTest.testSelect" />
+        <item itemvalue="JUnit.CRUDTest.autoInitData" />
+        <item itemvalue="JUnit.CRUDTest.customerSelect" />
+        <item itemvalue="JUnit.CRUDTest.testUpdate" />
+        <item itemvalue="JUnit.CRUDTest.testSave" />
+        <item itemvalue="JUnit.CRUDTest.testList" />
       </list>
     </recent_temporary>
   </component>
@@ -98,68 +164,132 @@
       <workItem from="1545287757215" duration="10753000" />
       <workItem from="1568516646362" duration="629000" />
     </task>
+    <task id="LOCAL-00001" summary="1">
+      <created>1604659255375</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1604659255375</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 16h 47m 20s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 16h 48m 05s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 16h 50m 46s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 16h 53m 01s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 16h 54m 53s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 17h 00m 56s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 17h 01m 29s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 17h 11m 43s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 17h 12m 15s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CRUDTest_testSelect - 2018.12.20 at 17h 12m 59s.xml">
-      <configuration name="CRUDTest.testSelect" configurationId="JUnit" />
-    </history-entry>
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11382000" />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1588212999187">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="397" key="GridCell.Tab.0.bottom" timestamp="1604889250008">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588212999187" />
-    <state x="449" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1588212654848">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="397" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604889250008" />
+    <state width="1877" height="397" key="GridCell.Tab.0.center" timestamp="1604889250008">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="449" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1588212654848" />
+    <state width="1877" height="397" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604889250008" />
+    <state width="1877" height="397" key="GridCell.Tab.0.left" timestamp="1604889250008">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="397" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604889250008" />
+    <state width="1877" height="397" key="GridCell.Tab.0.right" timestamp="1604889250008">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="397" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604889250008" />
+    <state width="1877" height="362" key="GridCell.Tab.1.bottom" timestamp="1604888653381">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="362" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604888653381" />
+    <state width="1877" height="362" key="GridCell.Tab.1.center" timestamp="1604888653381">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="362" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604888653381" />
+    <state width="1877" height="362" key="GridCell.Tab.1.left" timestamp="1604888653381">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="362" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604888653381" />
+    <state width="1877" height="362" key="GridCell.Tab.1.right" timestamp="1604888653381">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="362" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604888653381" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1604659257594">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604659257594" />
+    <state x="488" y="117" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1604886162814">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="488" y="117" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604886162814" />
+    <state x="763" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604887680137">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="763" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604887680137" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604889025616">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604889025616" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
-          <line>29</line>
+          <line>30</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
-          <line>37</line>
+          <line>52</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
+          <line>255</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
+          <line>199</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

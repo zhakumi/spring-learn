@@ -7,6 +7,7 @@ import com.wang.test.domain.User;
 import com.wang.test.enums.EnumA;
 import com.wang.test.mapper.UserMapper;
 import com.wang.test.service.IOmsUserService;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +32,20 @@ public class CRUDTest {
     private UserMapper userMapper;
     @Autowired
     private IOmsUserService iOmsUserService;
+
+    /**
+     * 自定义mapper
+     */
+    @Test
+    public void customerSelect() {
+//        List<User> users = userMapper.selectByName("zhangsan");
+//        QueryWrapper<User> queryWrapper=new QueryWrapper();
+//        queryWrapper.setEntity(new User(){{setUserName("zhangsan");}});
+//        List<User> users =userMapper.selectByMyWrapper(queryWrapper);
+//        User user = userMapper.selectById(1);
+        userMapper.updateAll();
+    }
+
 
     @Test
     public void testMapper() {
@@ -68,10 +83,11 @@ public class CRUDTest {
         int count = iOmsUserService.count();
         System.out.println(count);
         // Save
-        User user=new User();
-        user.setName("tss");
-        user.setPassword("sss");
-        user.setStatus(EnumA.ENABLE);
+        User user = new User();
+        user.setUserName("tss");
+        user.setUserPassword("sss");
+        user.setUserStatus(EnumA.DISENABLE);
+        user.setVersion(0);
         user.setCreateTime(LocalDateTime.now());
         // 插入一条记录（选择字段，策略插入）
         iOmsUserService.save(user);
@@ -125,9 +141,9 @@ public class CRUDTest {
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
         User user1 = new User();
         user1.setId(151L);
-        user1.setName("1");
-        user1.setPassword("ssss");
-        user1.setStatus(EnumA.ENABLE);
+        user1.setUserName("1");
+        user1.setUserPassword("ssss");
+        user1.setUserStatus(EnumA.ENABLE);
         updateWrapper.setEntity(user1);
         iOmsUserService.saveOrUpdate(user1);
 //// 根据updateWrapper尝试更新，否继续执行saveOrUpdate(T)方法
@@ -149,9 +165,9 @@ public class CRUDTest {
 //        updateWrapper.set("name",1);
         User user1 = new User();
         user1.setId(15L);
-        user1.setName("1");
-        user1.setPassword("sss");
-        user1.setStatus(EnumA.ENABLE);
+        user1.setUserName("1");
+        user1.setUserPassword("sss");
+        user1.setUserStatus(EnumA.ENABLE);
         updateWrapper.setEntity(user1);
 //        iOmsUserService.remove(updateWrapper);
 //// 根据 ID 删除
@@ -170,28 +186,28 @@ public class CRUDTest {
 //        updateWrapper.setSql("name=1");
         // 设置 set
 //        updateWrapper.set("name",1);
-        User user1 = new User();
-        user1.setId(15L);
-        user1.setName("1");
-        user1.setPassword("sss");
-        user1.setStatus(EnumA.ENABLE);
-        updateWrapper.setEntity(user1);
+//        User user1 = new User();
+//        user1.setId(15L);
+//        user1.setUserName("1");
+//        user1.setUserPassword("sss");
+//        user1.setUserStatus(EnumA.ENABLE);
+//        updateWrapper.setEntity(user1);
 //        iOmsUserService.update(updateWrapper);
 
 //// 根据 whereEntity 条件，更新记录
 //        boolean update(T entity, Wrapper<T> updateWrapper);
-        User update = new User();
-        update.setId(15L);
-        update.setName("ts");
-        update.setPassword("sss1");
-        update.setStatus(EnumA.ENABLE);
-//        iOmsUserService.update(update,updateWrapper);
-//// 根据 ID 选择修改
-        iOmsUserService.updateById(update);
+//        User update = new User();
+//        update.setId(1324668024457437185L);
+//        update.setUserName("ts1");
+//        update.setVersion(0);
+////        iOmsUserService.update(update,updateWrapper);
+////// 根据 ID 选择修改
+//        iOmsUserService.updateById(update);
 //// 根据ID 批量更新
 //        boolean updateBatchById(Collection<T> entityList);
 //// 根据ID 批量更新
 //        boolean updateBatchById(Collection<T> entityList, int batchSize);
+
     }
 
     /**
@@ -204,7 +220,7 @@ public class CRUDTest {
         QueryWrapper<User> wrapper = new QueryWrapper();
         wrapper.setEntity(new User() {{
 //            setId(111L);
-            setName("ts");
+            setUserName("ts");
         }});
 //// 根据 Wrapper，查询一条记录 如果超过1行 true抛异常  false 返回第一个
         user1 = iOmsUserService.getOne(wrapper, false);
@@ -222,7 +238,7 @@ public class CRUDTest {
         // 根据 Wrapper 条件，查询总记录数
         QueryWrapper<User> wrapper = new QueryWrapper();
         wrapper.setEntity(new User() {{
-            setStatus(EnumA.ENABLE);
+            setUserStatus(EnumA.ENABLE);
         }});
         int count1 = iOmsUserService.count(wrapper);
     }
@@ -235,7 +251,7 @@ public class CRUDTest {
 //        List<T> list(Wrapper<T> queryWrapper);
         QueryWrapper<User> wrapper = new QueryWrapper();
         wrapper.setEntity(new User() {{
-            setStatus(EnumA.ENABLE);
+            setUserStatus(EnumA.ENABLE);
         }});
         List<User> users = iOmsUserService.list(wrapper);
         // 查询（根据ID 批量查询）
@@ -271,9 +287,9 @@ public class CRUDTest {
 //        IPage<T> page(IPage<T> page, Wrapper<T> queryWrapper);
         QueryWrapper<User> wrapper = new QueryWrapper();
         wrapper.setEntity(new User() {{
-            setStatus(EnumA.ENABLE);
+            setUserStatus(EnumA.ENABLE);
         }});
-        page1 = iOmsUserService.page(page,wrapper);
+        page1 = iOmsUserService.page(page, wrapper);
 // 无条件分页查询
 //        IPage<Map<String, Object>> pageMaps(IPage<T> page);
 // 条件分页查询
@@ -282,10 +298,10 @@ public class CRUDTest {
 
 
     @Test
-    public void testOther(){
+    public void testOther() {
         QueryWrapper<User> wrapper = new QueryWrapper();
         wrapper.setEntity(new User() {{
-            setStatus(EnumA.ENABLE);
+            setUserStatus(EnumA.ENABLE);
         }});
         // select 设置查询字段
 //        wrapper.select("id,name");
@@ -331,9 +347,9 @@ public class CRUDTest {
 //        wrapper.orderByAsc("id");
         //orderByDesc
         //orderBy
-        wrapper.orderBy(true,true,"name");
+        wrapper.orderBy(true, true, "name");
         //having
-        wrapper.having("id>1","1");
+        wrapper.having("id>1", "1");
         //or
         //and
         //nested
@@ -342,6 +358,20 @@ public class CRUDTest {
         //exists
         //notExists
         List<User> users = iOmsUserService.list(wrapper);
+    }
+
+
+    /**
+     * 自动填充默认值
+     */
+    @Test
+    public void autoInitData(){
+        User user = new User();
+        user.setUserName("tss1");
+        user.setUserPassword("sss");
+        user.setUserStatus(EnumA.DISENABLE);
+        // 插入一条记录（选择字段，策略插入）
+        iOmsUserService.save(user);
     }
 
 }

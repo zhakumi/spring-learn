@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.Version;
 import com.wang.test.enums.EnumA;
 
 import java.time.LocalDateTime;
@@ -17,12 +18,13 @@ import lombok.Data;
  */
 @Data
 @TableName("OMS_USER")
-public class User {
+public class User extends BaseEntity{
     @TableId(value = "ID", type = IdType.ASSIGN_ID)
     private Long id;
-    private String name;
-    private String password;
-    private EnumA status;
-    @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
+    private String userName;
+    private String userPassword;
+    private EnumA userStatus;
+    @Version
+    @TableField(value = "version", fill = FieldFill.INSERT)
+    private Integer version;
 }
