@@ -38,7 +38,7 @@ public class CRUDTest {
      */
     @Test
     public void customerSelect() {
-//        List<User> users = userMapper.selectByName("zhangsan");
+        List<User> users = userMapper.selectByName("zhangsan");
 //        QueryWrapper<User> queryWrapper=new QueryWrapper();
 //        queryWrapper.setEntity(new User(){{setUserName("zhangsan");}});
 //        List<User> users =userMapper.selectByMyWrapper(queryWrapper);

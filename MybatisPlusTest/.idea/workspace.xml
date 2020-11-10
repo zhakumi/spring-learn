@@ -22,21 +22,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88b636db-b656-422f-b951-b3bc2a629cc4" name="Default Changelist" comment="1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/domain/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+    <list default="true" id="88b636db-b656-422f-b951-b3bc2a629cc4" name="Default Changelist" comment="test">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/MyMetaObjectHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/handler/MyInitObjectHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/enums/EnumA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/enums/EnumA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/test/handler/MyInitObjectHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/test/handler/MyInitObjectHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/CRUDTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CRUDTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/wang/test/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wang/test/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wang/test/MyMetaObjectHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wang/test/enums/EnumA.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wang/test/enums/EnumA.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,12 +47,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>freemarker/template/Configuration</find>
-      <find>TemplateConfig</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -75,11 +65,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545299887665" />
-    <property name="com.obroom.plugin.mybatislog.indexNum" value="55" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../wlyuan" />
+    <property name="com.obroom.plugin.mybatislog.indexNum" value="68" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mybatis-plus-samples" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -90,7 +81,7 @@
   <component name="RebelAgentSelection">
     <selection>jr</selection>
   </component>
-  <component name="RunManager" selected="JUnit.CRUDTest.autoInitData">
+  <component name="RunManager" selected="JUnit.CRUDTest.customerSelect">
     <configuration name="CRUDTest.autoInitData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MybatisPlusTest" />
       <option name="PACKAGE_NAME" value="" />
@@ -111,11 +102,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CRUDTest.testList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CRUDTest.testPage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MybatisPlusTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CRUDTest" />
-      <option name="METHOD_NAME" value="testList" />
+      <option name="METHOD_NAME" value="testPage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -143,14 +134,15 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CRUDTest.autoInitData" />
         <item itemvalue="JUnit.CRUDTest.customerSelect" />
+        <item itemvalue="JUnit.CRUDTest.testPage" />
+        <item itemvalue="JUnit.CRUDTest.autoInitData" />
         <item itemvalue="JUnit.CRUDTest.testUpdate" />
         <item itemvalue="JUnit.CRUDTest.testSave" />
-        <item itemvalue="JUnit.CRUDTest.testList" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -163,6 +155,8 @@
       <updated>1545287747788</updated>
       <workItem from="1545287757215" duration="10753000" />
       <workItem from="1568516646362" duration="629000" />
+      <workItem from="1604920233397" duration="619000" />
+      <workItem from="1604980340887" duration="3367000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1604659255375</created>
@@ -171,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604659255375</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test">
+      <created>1604914206125</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1604914206125</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,57 +192,66 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="397" key="GridCell.Tab.0.bottom" timestamp="1604889250008">
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1604994078947">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="397" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604889250008" />
-    <state width="1877" height="397" key="GridCell.Tab.0.center" timestamp="1604889250008">
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604994078947" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1604992994724">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="397" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604889250008" />
-    <state width="1877" height="397" key="GridCell.Tab.0.left" timestamp="1604889250008">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604992994724" />
+    <state width="1877" height="562" key="GridCell.Tab.0.bottom" timestamp="1604994152238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="397" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604889250008" />
-    <state width="1877" height="397" key="GridCell.Tab.0.right" timestamp="1604889250008">
+    <state width="1877" height="562" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604994152238" />
+    <state width="1877" height="562" key="GridCell.Tab.0.center" timestamp="1604994152238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="397" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604889250008" />
-    <state width="1877" height="362" key="GridCell.Tab.1.bottom" timestamp="1604888653381">
+    <state width="1877" height="562" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604994152238" />
+    <state width="1877" height="562" key="GridCell.Tab.0.left" timestamp="1604994152238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604888653381" />
-    <state width="1877" height="362" key="GridCell.Tab.1.center" timestamp="1604888653381">
+    <state width="1877" height="562" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604994152238" />
+    <state width="1877" height="562" key="GridCell.Tab.0.right" timestamp="1604994152238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604888653381" />
-    <state width="1877" height="362" key="GridCell.Tab.1.left" timestamp="1604888653381">
+    <state width="1877" height="562" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604994152238" />
+    <state width="1877" height="562" key="GridCell.Tab.1.bottom" timestamp="1604994152238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604888653381" />
-    <state width="1877" height="362" key="GridCell.Tab.1.right" timestamp="1604888653381">
+    <state width="1877" height="562" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604994152238" />
+    <state width="1877" height="562" key="GridCell.Tab.1.center" timestamp="1604994152238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604888653381" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1604659257594">
+    <state width="1877" height="562" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604994152238" />
+    <state width="1877" height="562" key="GridCell.Tab.1.left" timestamp="1604994152238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604659257594" />
+    <state width="1877" height="562" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604994152238" />
+    <state width="1877" height="562" key="GridCell.Tab.1.right" timestamp="1604994152238">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="562" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604994152238" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1604914207758">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604914207758" />
     <state x="488" y="117" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1604886162814">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="488" y="117" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604886162814" />
-    <state x="763" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604887680137">
+    <state x="763" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604993731911">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="763" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604887680137" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604889025616">
+    <state x="763" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604993731911" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604994479985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604889025616" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604994479985" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -290,6 +300,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
           <line>45</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/CRUDTest.java</url>
+          <line>283</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

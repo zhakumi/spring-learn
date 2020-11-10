@@ -1,15 +1,33 @@
 package com.wang.test;
 
 
+import com.baomidou.mybatisplus.core.parser.ISqlParser;
+import com.baomidou.mybatisplus.core.parser.ISqlParserFilter;
+import com.baomidou.mybatisplus.core.parser.SqlParserHelper;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
+import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
+import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
 
+import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.expression.LongValue;
+import net.sf.jsqlparser.expression.StringValue;
+
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.reflection.MetaObject;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: wangcan
@@ -26,11 +44,39 @@ public class Application {
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        // 设置请求的页面大于最大页后操作， true调回到首页，false 继续请求  默认false
-        // paginationInterceptor.setOverflow(false);
-        // 设置最大单页限制数量，默认 500 条，-1 不受限制
-        // paginationInterceptor.setLimit(500);        // 开启 count 的 join 优化,只针对部分 left join
-        paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
+        List<ISqlParser> sqlParserList = new ArrayList<>();
+        // 创建租户SQL解析器
+        TenantSqlParser tenantSqlParser = new TenantSqlParser();
+        // 设置租户处理器
+        tenantSqlParser.setTenantHandler(new TenantHandler() {
+            @Override
+            public Expression getTenantId(boolean select) {
+                return new StringValue("608");
+            }
+            @Override
+            public String getTenantIdColumn() {
+                // 对应数据库租户ID的列名
+                return "APP_ID";
+            }
+            @Override
+            public boolean doTableFilter(String tableName) {
+                // 是否需要需要过滤某一张表
+                return false;
+            }
+        });
+        sqlParserList.add(tenantSqlParser);
+        paginationInterceptor.setSqlParserList(sqlParserList);
+        paginationInterceptor.setSqlParserFilter(new ISqlParserFilter(){
+            @Override
+            public boolean doFilter(MetaObject metaObject) {
+                MappedStatement ms = SqlParserHelper.getMappedStatement(metaObject);
+                // 对应Mapper、dao中的方法
+                if("com.wang.test.mapper.UserMapper.selectByName".equals(ms.getId())){
+                    return true;
+                }
+                return false;
+            }
+        });
         return paginationInterceptor;
     }
 
@@ -51,4 +97,5 @@ public class Application {
     public BlockAttackInnerInterceptor blockAttackInnerInterceptor(){
         return new BlockAttackInnerInterceptor();
     }
+
 }

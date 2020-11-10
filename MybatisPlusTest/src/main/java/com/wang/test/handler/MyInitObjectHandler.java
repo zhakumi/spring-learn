@@ -19,13 +19,25 @@ public class MyInitObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         LocalDateTime now = LocalDateTime.now();
-        this.setFieldValByName("createTime", now, metaObject);
-        this.setFieldValByName("updateTime", now, metaObject);
-        this.setFieldValByName("version",0,metaObject);
+        Object createTime = getFieldValByName("createTime", metaObject);
+        if (createTime == null) {
+            this.setFieldValByName("createTime", now, metaObject);
+        }
+        Object updateTime = getFieldValByName("updateTime", metaObject);
+        if (updateTime == null) {
+            this.setFieldValByName("updateTime", now, metaObject);
+        }
+        Object version = getFieldValByName("version", metaObject);
+        if (version == null) {
+            this.setFieldValByName("version", 0, metaObject);
+        }
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+        Object updateTime = getFieldValByName("updateTime", metaObject);
+        if (updateTime == null) {
+            this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+        }
     }
 }
