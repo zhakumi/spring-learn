@@ -168,9 +168,14 @@ class ConfigurationClassParser {
 
 
 	public void parse(Set<BeanDefinitionHolder> configCandidates) {
+		//遍历分析配置类
 		for (BeanDefinitionHolder holder : configCandidates) {
+			//得到配置类对应的BeanDefinition
 			BeanDefinition bd = holder.getBeanDefinition();
 			try {
+				// 这里根据Bean定义的不同类型走不同的分支，但是最终都会调用到方法
+				// processConfigurationClass(ConfigurationClass configClass)
+				// 判断是否是AnnotatedBeanDefinition类型，上文分析过了
 				if (bd instanceof AnnotatedBeanDefinition) {
 					parse(((AnnotatedBeanDefinition) bd).getMetadata(), holder.getBeanName());
 				}
@@ -189,7 +194,12 @@ class ConfigurationClassParser {
 						"Failed to parse configuration class [" + bd.getBeanClassName() + "]", ex);
 			}
 		}
-
+        // 执行找到的 DeferredImportSelector
+		//  DeferredImportSelector 是 ImportSelector 的一个变种。
+		// ImportSelector 被设计成其实和@Import注解的类同样的导入效果，但是实现 ImportSelector
+		// 的类可以条件性地决定导入哪些配置。
+		// DeferredImportSelector 的设计目的是在所有其他的配置类被处理后才处理。这也正是
+		// 该语句被放到本函数最后一行的原因。
 		this.deferredImportSelectorHandler.process();
 	}
 
@@ -223,6 +233,7 @@ class ConfigurationClassParser {
 
 
 	protected void processConfigurationClass(ConfigurationClass configClass, Predicate<String> filter) throws IOException {
+		// 检查当前解析的配置bean是否包含Conditional注解，如果不包含则不需要跳过，如果包含了则进行match方法得到匹配结果
 		if (this.conditionEvaluator.shouldSkip(configClass.getMetadata(), ConfigurationPhase.PARSE_CONFIGURATION)) {
 			return;
 		}
@@ -231,6 +242,8 @@ class ConfigurationClassParser {
 		if (existingClass != null) {
 			if (configClass.isImported()) {
 				if (existingClass.isImported()) {
+					//如果要处理的配置类configClass在已经分析处理的配置类记录中已存在，
+					//合并二者的importedBy属性
 					existingClass.mergeImportedBy(configClass);
 				}
 				// Otherwise ignore new imported config class; existing non-imported class overrides it.
@@ -244,9 +257,11 @@ class ConfigurationClassParser {
 			}
 		}
 
+		//递归地处理配置类及其超类层次结构。sourceClass包含了calss文件，后面获取父类用
 		// Recursively process the configuration class and its superclass hierarchy.
 		SourceClass sourceClass = asSourceClass(configClass, filter);
 		do {
+			// 真正的做解析
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass, filter);
 		}
 		while (sourceClass != null);
