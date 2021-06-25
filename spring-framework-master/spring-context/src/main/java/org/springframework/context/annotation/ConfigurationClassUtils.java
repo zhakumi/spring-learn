@@ -83,18 +83,23 @@ abstract class ConfigurationClassUtils {
 	 */
 	public static boolean checkConfigurationClassCandidate(
 			BeanDefinition beanDef, MetadataReaderFactory metadataReaderFactory) {
-
+         //获取class名字,这里是com.config.Config
 		String className = beanDef.getBeanClassName();
 		if (className == null || beanDef.getFactoryMethodName() != null) {
 			return false;
 		}
 
 		AnnotationMetadata metadata;
+		// 判断bean 是否是AnnotatedBeanDefinition AnnotatedGenericBeanDefinition实现了AnnotatedBeanDefinition
+		//我们的配置类Config对应的BeanDefinition确实就是AnnotatedBeanDefinition类型
 		if (beanDef instanceof AnnotatedBeanDefinition &&
 				className.equals(((AnnotatedBeanDefinition) beanDef).getMetadata().getClassName())) {
 			// Can reuse the pre-parsed metadata from the given BeanDefinition...
+			//获取配置类的注解信息
 			metadata = ((AnnotatedBeanDefinition) beanDef).getMetadata();
 		}
+		//如果BeanDefinition是AbstractBeanDefinition并且包装了业务类，RootBeanDefinition继承了如果BeanDefinition是AbstractBeanDefinition
+		//spring内置的后置处理器确实是AbstractBeanDefinition类型的
 		else if (beanDef instanceof AbstractBeanDefinition && ((AbstractBeanDefinition) beanDef).hasBeanClass()) {
 			// Check already loaded Class if present...
 			// since we possibly can't even load the class file for this Class.
@@ -105,9 +110,11 @@ abstract class ConfigurationClassUtils {
 					EventListenerFactory.class.isAssignableFrom(beanClass)) {
 				return false;
 			}
+			//拿到注解信息
 			metadata = AnnotationMetadata.introspect(beanClass);
 		}
 		else {
+			//既不是AnnotatedBeanDefinition类型也不是AbstractBeanDefinition类型，或者是AbstractBeanDefinition类型但没有包装业务类
 			try {
 				MetadataReader metadataReader = metadataReaderFactory.getMetadataReader(className);
 				metadata = metadataReader.getAnnotationMetadata();
@@ -121,18 +128,24 @@ abstract class ConfigurationClassUtils {
 			}
 		}
 
+		//判断注解中是否包含了@Configuration注解
 		Map<String, Object> config = metadata.getAnnotationAttributes(Configuration.class.getName());
 		if (config != null && !Boolean.FALSE.equals(config.get("proxyBeanMethods"))) {
+			//设置属性，相当于beanDef.setAttribute("configurationClass","full")
 			beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_FULL);
 		}
+		//判断注解中是否包含了@Component、ComponentScan、Import、ImportResource其中之一，或者是否有@Bean注解的方法。
 		else if (config != null || isConfigurationCandidate(metadata)) {
+			//设置属性，相当于beanDef.setAttribute("configurationClass","lift")
 			beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_LITE);
 		}
 		else {
+			// 没有返回 sring内置后置处理器都没有上面那些注解
 			return false;
 		}
 
 		// It's a full or lite configuration candidate... Let's determine the order value, if any.
+		//如果有@Order注解，拿到注解的value值,并将值设置到属性中，后面执行会根据这个属性值的大小进行先后调用
 		Integer order = getOrder(metadata);
 		if (order != null) {
 			beanDef.setAttribute(ORDER_ATTRIBUTE, order);

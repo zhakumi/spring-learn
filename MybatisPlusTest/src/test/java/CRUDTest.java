@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wang.test.Application;
 import com.wang.test.domain.User;
-import com.wang.test.enums.EnumA;
+import com.wang.test.enums.EnableEnum;
 import com.wang.test.mapper.UserMapper;
 import com.wang.test.service.IOmsUserService;
 
@@ -54,7 +54,7 @@ public class CRUDTest {
 //            setId(5L);
 //            setName("test");
 //            setPassword("test");
-//            setStatus(EnumA.ENABLE);
+//            setStatus(EnableEnum.ENABLE);
 //        }});
 //        System.out.println(("----- selectAll method test ------"));
 //        List<User> userList = userMapper.selectList(null);
@@ -86,7 +86,7 @@ public class CRUDTest {
         User user = new User();
         user.setUserName("tss");
         user.setUserPassword("sss");
-        user.setUserStatus(EnumA.DISENABLE);
+        user.setUserStatus(EnableEnum.ENABLE);
         user.setVersion(0);
         user.setCreateTime(LocalDateTime.now());
         // 插入一条记录（选择字段，策略插入）
@@ -97,13 +97,13 @@ public class CRUDTest {
 //        user1.setId(13L);
 //        user1.setName("ts");
 //        user1.setPassword("sss");
-//        user1.setStatus(EnumA.ENABLE);
+//        user1.setStatus(EnableEnum.ENABLE);
 //        user1.setCreateTime(LocalDateTime.now());
 //        User user2 = new User();
 //        user2.setId(14L);
 //        user2.setName("ts");
 //        user2.setPassword("sss");
-//        user2.setStatus(EnumA.ENABLE);
+//        user2.setStatus(EnableEnum.ENABLE);
 //        user2.setCreateTime(LocalDateTime.now());
 //        users.add(user1);
 //        users.add(user2);
@@ -114,17 +114,17 @@ public class CRUDTest {
 //        user1.setId(15L);
 //        user1.setName("ts");
 //        user1.setPassword("sss");
-//        user1.setStatus(EnumA.ENABLE);
+//        user1.setStatus(EnableEnum.ENABLE);
 //        User user2 = new User();
 //        user2.setId(16L);
 //        user2.setName("ts");
 //        user2.setPassword("sss");
-//        user2.setStatus(EnumA.ENABLE);
+//        user2.setStatus(EnableEnum.ENABLE);
 //        User user3 = new User();
 //        user3.setId(17L);
 //        user3.setName("ts");
 //        user3.setPassword("sss");
-//        user3.setStatus(EnumA.ENABLE);
+//        user3.setStatus(EnableEnum.ENABLE);
 //        users.add(user1);
 //        users.add(user2);
 //        users.add(user3);
@@ -143,7 +143,7 @@ public class CRUDTest {
         user1.setId(151L);
         user1.setUserName("1");
         user1.setUserPassword("ssss");
-        user1.setUserStatus(EnumA.ENABLE);
+        user1.setUserStatus(EnableEnum.ENABLE);
         updateWrapper.setEntity(user1);
         iOmsUserService.saveOrUpdate(user1);
 //// 根据updateWrapper尝试更新，否继续执行saveOrUpdate(T)方法
@@ -167,7 +167,7 @@ public class CRUDTest {
         user1.setId(15L);
         user1.setUserName("1");
         user1.setUserPassword("sss");
-        user1.setUserStatus(EnumA.ENABLE);
+        user1.setUserStatus(EnableEnum.ENABLE);
         updateWrapper.setEntity(user1);
 //        iOmsUserService.remove(updateWrapper);
 //// 根据 ID 删除
@@ -186,13 +186,15 @@ public class CRUDTest {
 //        updateWrapper.setSql("name=1");
         // 设置 set
 //        updateWrapper.set("name",1);
-//        User user1 = new User();
-//        user1.setId(15L);
-//        user1.setUserName("1");
-//        user1.setUserPassword("sss");
-//        user1.setUserStatus(EnumA.ENABLE);
-//        updateWrapper.setEntity(user1);
+        User user1 = new User();
+        user1.setId(15L);
+        user1.setUserName("1");
+        user1.setUserPassword("sss");
+        user1.setUserStatus(EnableEnum.ENABLE);
+        user1.setVersion(1);
+        updateWrapper.setEntity(user1);
 //        iOmsUserService.update(updateWrapper);
+        iOmsUserService.updateById(user1);
 
 //// 根据 whereEntity 条件，更新记录
 //        boolean update(T entity, Wrapper<T> updateWrapper);
@@ -200,7 +202,8 @@ public class CRUDTest {
 //        update.setId(1324668024457437185L);
 //        update.setUserName("ts1");
 //        update.setVersion(0);
-////        iOmsUserService.update(update,updateWrapper);
+//        // 防止 全表更新
+//        iOmsUserService.update(update,updateWrapper);
 ////// 根据 ID 选择修改
 //        iOmsUserService.updateById(update);
 //// 根据ID 批量更新
@@ -238,7 +241,7 @@ public class CRUDTest {
         // 根据 Wrapper 条件，查询总记录数
         QueryWrapper<User> wrapper = new QueryWrapper();
         wrapper.setEntity(new User() {{
-            setUserStatus(EnumA.ENABLE);
+            setUserStatus(EnableEnum.ENABLE);
         }});
         int count1 = iOmsUserService.count(wrapper);
     }
@@ -251,7 +254,7 @@ public class CRUDTest {
 //        List<T> list(Wrapper<T> queryWrapper);
         QueryWrapper<User> wrapper = new QueryWrapper();
         wrapper.setEntity(new User() {{
-            setUserStatus(EnumA.ENABLE);
+            setUserStatus(EnableEnum.ENABLE);
         }});
         List<User> users = iOmsUserService.list(wrapper);
         // 查询（根据ID 批量查询）
@@ -287,7 +290,7 @@ public class CRUDTest {
 //        IPage<T> page(IPage<T> page, Wrapper<T> queryWrapper);
         QueryWrapper<User> wrapper = new QueryWrapper();
         wrapper.setEntity(new User() {{
-            setUserStatus(EnumA.ENABLE);
+            setUserStatus(EnableEnum.ENABLE);
         }});
         page1 = iOmsUserService.page(page, wrapper);
 // 无条件分页查询
@@ -301,7 +304,7 @@ public class CRUDTest {
     public void testOther() {
         QueryWrapper<User> wrapper = new QueryWrapper();
         wrapper.setEntity(new User() {{
-            setUserStatus(EnumA.ENABLE);
+            setUserStatus(EnableEnum.ENABLE);
         }});
         // select 设置查询字段
 //        wrapper.select("id,name");
@@ -369,7 +372,7 @@ public class CRUDTest {
         User user = new User();
         user.setUserName("tss1");
         user.setUserPassword("sss");
-        user.setUserStatus(EnumA.DISENABLE);
+        user.setUserStatus(EnableEnum.DISABLE);
         // 插入一条记录（选择字段，策略插入）
         iOmsUserService.save(user);
     }
