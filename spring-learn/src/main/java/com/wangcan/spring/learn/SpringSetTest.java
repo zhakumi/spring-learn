@@ -1,7 +1,9 @@
 package com.wangcan.spring.learn;
 
 
-
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.GenericBeanDefinition;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * 手工 初始化beanDefinition
