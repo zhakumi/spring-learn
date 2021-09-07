@@ -1,4 +1,4 @@
-package com.wangcan.spring.mybatis;
+package com.wangcan.spring.mybatis.mapper;
 
 import org.apache.ibatis.annotations.Select;
 
@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface UserMapper {
 
-    @Select("select 'test'")
+    @Select("select user_name from OMS_USER limit 1")
     String select();
 }

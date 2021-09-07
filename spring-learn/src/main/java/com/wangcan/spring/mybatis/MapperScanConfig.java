@@ -1,31 +1,37 @@
 package com.wangcan.spring.mybatis;
 
+import java.io.IOException;
+import java.io.InputStream;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author: wangcan
  * @date: 2021/9/6 17:05
  */
+@ComponentScan("com.wangcan.spring.mybatis")
+@Import(MapperBeanDefinitionRegistry.class)
 public class MapperScanConfig {
+
+
+    @Bean
+    public SqlSessionFactory sqlSessionFactory() throws IOException {
+        InputStream inputStream= Resources.getResourceAsStream("mybatis.xml");
+        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
+        return sqlSessionFactory;
+    }
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         //注册配置类
-        context.scan("com.wangcan.spring.mybatis");
-
-        // 注册userMapper
-        AbstractBeanDefinition beanDefinition= BeanDefinitionBuilder.genericBeanDefinition().getBeanDefinition();
-        beanDefinition.setBeanClass(MapperFactoryBean.class);
-        beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(UserMapper.class);
-        context.registerBeanDefinition("userMapper",beanDefinition);
-
-        // 注册orderMapper
-        AbstractBeanDefinition orderDefinition= BeanDefinitionBuilder.genericBeanDefinition().getBeanDefinition();
-        orderDefinition.setBeanClass(MapperFactoryBean.class);
-        orderDefinition.getConstructorArgumentValues().addGenericArgumentValue(OrderMapper.class);
-        context.registerBeanDefinition("orderMapper",orderDefinition);
+        context.register(MapperScanConfig.class);
 
 //        AbstractBeanDefinition beanDefinition= BeanDefinitionBuilder.genericBeanDefinition().getBeanDefinition();
 //        beanDefinition.setBeanClass(UserService.class);
@@ -35,8 +41,7 @@ public class MapperScanConfig {
 //        beanDefinition.setBeanClass(AFactoryBean.class);
 //        context.registerBeanDefinition("a",beanDefinition);
         context.refresh();
-
-        //        System.out.println(context.getBean("a"));
+//        System.out.println(context.getBean("a"));
 //        System.out.println(context.getBean("&a"));
 
         UserService userService = context.getBean("userService", UserService.class);

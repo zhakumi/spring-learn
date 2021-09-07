@@ -7,7 +7,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.stereotype.Component;
 
-//后置处理器
+//bean工厂后置处理器
 //扫描注册成功完成后，spring自动调用后置处理器MyBeanFactoryPostProcessor的postProcessBeanFactory方法
 @Component
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {

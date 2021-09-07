@@ -2,7 +2,10 @@ package com.wangcan.spring.mybatis;
 
 import java.lang.reflect.Method;
 import lombok.val;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.cglib.proxy.Proxy;
 
@@ -10,30 +13,27 @@ import org.springframework.cglib.proxy.Proxy;
  * @author: wangcan
  * @date: 2021/9/6 19:19
  */
-//@Component
 public class MapperFactoryBean implements FactoryBean {
 
 
-    private Class mapperObjectClass;
+    private Class mapperClass;
+    private SqlSession sqlSession;
 
-    public MapperFactoryBean(Class mapperObjectClass) {
-        this.mapperObjectClass = mapperObjectClass;
+    public MapperFactoryBean(Class mapperClass) {
+        this.mapperClass = mapperClass;
     }
 
     public Object getObject() throws Exception {
-        val object = Proxy.newProxyInstance(MapperFactoryBean.class.getClassLoader(),
-            new Class[]{mapperObjectClass},
-            new InvocationHandler() {
-
-                public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
-                    System.out.println(method.getName());
-                    return null;
-                }
-            });
-        return object;
+        return sqlSession.getMapper(mapperClass);
     }
 
     public Class<?> getObjectType() {
-        return mapperObjectClass;
+        return mapperClass;
+    }
+
+    @Autowired
+    public void setSqlSession(SqlSessionFactory sessionFactory) {
+        sessionFactory.getConfiguration().addMapper(mapperClass);
+        this.sqlSession = sessionFactory.openSession();
     }
 }

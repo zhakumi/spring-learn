@@ -1,4 +1,4 @@
-package com.wangcan.spring.mybatis;
+package com.wangcan.spring.mybatis.mapper;
 
 import org.apache.ibatis.annotations.Select;
 
@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface OrderMapper {
 
-    @Select("select 'order'")
+    @Select("select contact from OMS_ORDER limit 1")
     String select();
 }

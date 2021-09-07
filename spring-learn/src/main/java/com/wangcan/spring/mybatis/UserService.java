@@ -1,5 +1,7 @@
 package com.wangcan.spring.mybatis;
 
+import com.wangcan.spring.mybatis.mapper.OrderMapper;
+import com.wangcan.spring.mybatis.mapper.UserMapper;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
