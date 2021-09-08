@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Import;
  * @date: 2021/9/6 17:05
  */
 @ComponentScan("com.wangcan.spring.mybatis")
-@Import(MapperBeanDefinitionRegistry.class)
+@WangcanMapperScan("com.wangcan.spring.mybatis.mapper")
 public class MapperScanConfig {
 
 
@@ -46,7 +46,6 @@ public class MapperScanConfig {
 
         UserService userService = context.getBean("userService", UserService.class);
         userService.show();
-
     }
 
 }

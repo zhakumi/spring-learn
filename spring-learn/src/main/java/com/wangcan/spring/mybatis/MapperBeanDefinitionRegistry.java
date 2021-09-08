@@ -3,6 +3,7 @@ package com.wangcan.spring.mybatis;
 import com.wangcan.spring.mybatis.mapper.OrderMapper;
 import com.wangcan.spring.mybatis.mapper.UserMapper;
 import java.io.IOException;
+import java.util.Map;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -22,17 +23,19 @@ public class MapperBeanDefinitionRegistry implements ImportBeanDefinitionRegistr
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata,
         BeanDefinitionRegistry registry) {
 
-        MapperScanner mapperScanner = new MapperScanner(registry);
+        // 读取wangcanMapperScan 注解上的value值 当成路径
+        Map<String, Object> annotations = annotationMetadata.getAnnotationAttributes(
+            WangcanMapperScan.class.getName());
+        String path = (String) annotations.get("value");
 
+        MapperScanner mapperScanner = new MapperScanner(registry);
         mapperScanner.addIncludeFilter(new TypeFilter() {
             public boolean match(MetadataReader metadataReader,
                 MetadataReaderFactory metadataReaderFactory) throws IOException {
                 return true;
             }
         });
-        int count = mapperScanner.scan("com.wangcan.spring.mybatis.mapper");
-        System.out.println(count);
-
+        mapperScanner.scan(path);
         // 注册userMapper 移动到mapperScanner
 //        AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition()
 //            .getBeanDefinition();
