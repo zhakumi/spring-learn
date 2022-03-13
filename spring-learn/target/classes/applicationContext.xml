@@ -6,5 +6,10 @@
     <!--注意上面的default-autowire="byType"  根据type进行自动注入-->
 <!--    <bean id="ab" abstract="true" ></bean>-->
 <!--    <bean id="xxx" class="com.wangcan.spring.learn.InterService" parent="ab" scope="prototype"></bean>-->
-        <bean id="performer" class="com.wangcan.spring.learn.PerformerImpl"></bean>
+        <bean id="performer" class="com.wangcan.spring.learn.PerformerImpl" init-method="init">
+            <property name="student" ref="student"></property>
+            <property name="name" value="wangcan"></property>
+        </bean>
+
+       <bean id="student" class="com.wangcan.spring.learn.bean.warpper.Student"></bean>
 </beans>

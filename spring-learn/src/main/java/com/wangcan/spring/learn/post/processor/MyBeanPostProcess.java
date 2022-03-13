@@ -5,21 +5,25 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
 /**
- * @author wangcan
- * @date 2021/8/26 9:19
+ * @author: wangcan
+ * @date: 2021/9/3 21:21
  */
 @Component
-public class MyBeanPostProcessor implements BeanPostProcessor {
+public class MyBeanPostProcess implements BeanPostProcessor {
 
     public Object postProcessBeforeInitialization(Object bean, String beanName)
         throws BeansException {
-        System.out.println("post before1");
+        if(bean instanceof InterService) {
+            System.out.println("BeanPostProcessor bean befor");
+        }
         return bean;
     }
 
     public Object postProcessAfterInitialization(Object bean, String beanName)
         throws BeansException {
-        System.out.println("post after2");
+        if(bean instanceof InterService) {
+            System.out.println("BeanPostProcessor bean after");
+        }
         return bean;
     }
 }

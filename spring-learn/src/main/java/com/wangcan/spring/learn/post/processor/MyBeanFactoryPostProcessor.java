@@ -1,4 +1,4 @@
-package com.wangcan.spring.learn;
+package com.wangcan.spring.learn.post.processor;
 
 
 import org.springframework.beans.BeansException;
@@ -14,11 +14,8 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         GenericBeanDefinition beanDefinition = (GenericBeanDefinition) beanFactory.getBeanDefinition("interService");
-        System.out.println("扫描注册成功完成后，spring自动调用次方法");
-        System.out.println(beanDefinition.getDescription());
+        System.out.println("BeanFactoryPostProcessor 扫描注册成功完成后，spring自动调用次方法");
 //        System.out.println("开始偷梁换柱成User");
 //        beanDefinition.setBeanClass(User.class);
-//        spring 插件就是基于其开放性扩展出来的
-        //print InterService在spring的名称：com.wangcan.spring.learn.User
     }
 }
