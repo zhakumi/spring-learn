@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 /**
  * @author wangcan
  * @date 2021/9/7 8:59
+ * mapper 扫描器
  */
 public class MapperScanner extends ClassPathBeanDefinitionScanner {
 

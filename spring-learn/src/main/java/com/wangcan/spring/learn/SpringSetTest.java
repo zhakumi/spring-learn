@@ -1,6 +1,7 @@
 package com.wangcan.spring.learn;
 
 
+import com.wangcan.spring.learn.scan.Config;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -10,14 +11,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class SpringSetTest {
     public static void main(String[] args) {
-        // 以下三行 完成spring 的启动
-        //其父类GenericApplicationContext 空构造方法就初始化一个  beanFactory
+
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        //注册配置类
-        context.register(Config.class);
         //手工初始化Bean
         GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
-        beanDefinition.setBeanClassName("com.wangcan.spring.learn.InterService");
+        beanDefinition.setBeanClassName("com.wangcan.spring.learn.post.processor.InterService");
         beanDefinition.setScope("singleton");
         beanDefinition.setDescription("手工注入");
         beanDefinition.setAbstract(false);
@@ -48,6 +46,5 @@ public class SpringSetTest {
         System.out.println("实例范围" + interServiceBeanDefinition.getScope());
         System.out.println("是否是懒加载" + interServiceBeanDefinition.isLazyInit());
         System.out.println("是否是抽象类" + interServiceBeanDefinition.isAbstract());
-        System.out.println("——————等等等等，读者自行编写");
     }
 }

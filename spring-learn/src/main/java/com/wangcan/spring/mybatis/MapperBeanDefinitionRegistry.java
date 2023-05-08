@@ -2,7 +2,9 @@ package com.wangcan.spring.mybatis;
 
 import com.wangcan.spring.mybatis.mapper.OrderMapper;
 import com.wangcan.spring.mybatis.mapper.UserMapper;
+
 import java.io.IOException;
+
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -20,32 +22,31 @@ import org.springframework.core.type.filter.TypeFilter;
 public class MapperBeanDefinitionRegistry implements ImportBeanDefinitionRegistrar {
 
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata,
-        BeanDefinitionRegistry registry) {
+                                        BeanDefinitionRegistry registry) {
+//         手工注册userMapper
+        AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition()
+            .getBeanDefinition();
+        beanDefinition.setBeanClass(MapperFactoryBean.class);
+        beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(UserMapper.class);
+        registry.registerBeanDefinition("userMapper", beanDefinition);
 
-        MapperScanner mapperScanner = new MapperScanner(registry);
+        // 注册orderMapper
+        AbstractBeanDefinition orderDefinition = BeanDefinitionBuilder.genericBeanDefinition()
+            .getBeanDefinition();
+        orderDefinition.setBeanClass(MapperFactoryBean.class);
+        orderDefinition.getConstructorArgumentValues().addGenericArgumentValue(OrderMapper.class);
+        registry.registerBeanDefinition("orderMapper", orderDefinition);
 
-        mapperScanner.addIncludeFilter(new TypeFilter() {
-            public boolean match(MetadataReader metadataReader,
-                MetadataReaderFactory metadataReaderFactory) throws IOException {
-                return true;
-            }
-        });
-        int count = mapperScanner.scan("com.wangcan.spring.mybatis.mapper");
-        System.out.println(count);
-
-        // 注册userMapper 移动到mapperScanner
-//        AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition()
-//            .getBeanDefinition();
-//        beanDefinition.setBeanClass(MapperFactoryBean.class);
-//        beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(UserMapper.class);
-//        registry.registerBeanDefinition("userMapper", beanDefinition);
-//
-//        // 注册orderMapper
-//        AbstractBeanDefinition orderDefinition = BeanDefinitionBuilder.genericBeanDefinition()
-//            .getBeanDefinition();
-//        orderDefinition.setBeanClass(MapperFactoryBean.class);
-//        orderDefinition.getConstructorArgumentValues().addGenericArgumentValue(OrderMapper.class);
-//        registry.registerBeanDefinition("orderMapper", orderDefinition);
+        //        自动扫描 推荐
+//        MapperScanner mapperScanner = new MapperScanner(registry);
+//        mapperScanner.addIncludeFilter(new TypeFilter() {
+//            public boolean match(MetadataReader metadataReader,
+//                                 MetadataReaderFactory metadataReaderFactory) throws IOException {
+//                return true;
+//            }
+//        });
+//        int count = mapperScanner.scan("com.wangcan.spring.mybatis.mapper");
+//        System.out.println("扫描到的mapper总和" + count);
 
     }
 }

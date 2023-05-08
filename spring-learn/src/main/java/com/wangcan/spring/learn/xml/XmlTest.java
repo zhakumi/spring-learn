@@ -1,5 +1,8 @@
-package com.wangcan.spring.learn;
+package com.wangcan.spring.learn.xml;
 
+import com.wangcan.spring.learn.PerformanceException;
+import com.wangcan.spring.learn.Performer;
+import com.wangcan.spring.learn.post.processor.InterService;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.core.io.ClassPathResource;
@@ -24,5 +27,9 @@ public class XmlTest {
         Performer performer=(Performer) factory.getBean("performer");
         // 调用bean的方法
         performer.perform();
+
+        // 获取interService
+        InterService interService=(InterService) factory.getBean("xxx");
+        System.out.println(interService);
     }
 }

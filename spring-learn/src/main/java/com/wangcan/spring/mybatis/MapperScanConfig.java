@@ -32,21 +32,8 @@ public class MapperScanConfig {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         //注册配置类
         context.register(MapperScanConfig.class);
-
-//        AbstractBeanDefinition beanDefinition= BeanDefinitionBuilder.genericBeanDefinition().getBeanDefinition();
-//        beanDefinition.setBeanClass(UserService.class);
-//        context.registerBeanDefinition("userService",beanDefinition);
-
-//        AbstractBeanDefinition beanDefinition= BeanDefinitionBuilder.genericBeanDefinition().getBeanDefinition();
-//        beanDefinition.setBeanClass(AFactoryBean.class);
-//        context.registerBeanDefinition("a",beanDefinition);
-        context.refresh();
-//        System.out.println(context.getBean("a"));
-//        System.out.println(context.getBean("&a"));
-
         UserService userService = context.getBean("userService", UserService.class);
         userService.show();
-
     }
 
 }

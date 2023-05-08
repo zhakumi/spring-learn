@@ -20,7 +20,7 @@ public class PerformerImpl implements Performer
     }
 
     public void init() {
-        System.out.println("init");
+        System.out.println(" Performer init");
     }
 
     public void destroy() throws Exception {

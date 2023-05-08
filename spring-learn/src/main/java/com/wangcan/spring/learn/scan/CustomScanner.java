@@ -26,7 +26,7 @@ public class CustomScanner  extends ClassPathBeanDefinitionScanner {
 
     @Override
     protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
-        //如果是接口，则返回true，会添加到IOC容器中去
-        return beanDefinition.getMetadata().isInterface();
+        //如果是非接口，则返回true，会添加到IOC容器中去
+        return !beanDefinition.getMetadata().isInterface();
     }
 }
